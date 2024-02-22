@@ -7,6 +7,9 @@ import os
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 
+from src.components.data_transformationn import DataTransformationConfig
+from src.components.data_transformationn import Datatransformation
+
 @dataclass
 class DataIngestionConfig:
     train_data_path :str = os.path.join('artifacts','train.csv')
@@ -46,7 +49,10 @@ class DataInjection:
 
 if __name__ == "__main__":
     obj = DataInjection() 
-    obj.initiate_data_injection()
+    train_data,test_data = obj.initiate_data_injection()
+
+    datatransformation = Datatransformation()
+    train_arr,test_arr,_ = datatransformation.initiate_data_transfomation(train_data,test_data)
 
 
 
