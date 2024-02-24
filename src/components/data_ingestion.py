@@ -10,6 +10,9 @@ from dataclasses import dataclass
 from src.components.data_transformationn import DataTransformationConfig
 from src.components.data_transformationn import Datatransformation
 
+from src.components.model_trainer import ModelTrainerConfig
+from src.components.model_trainer import ModelTrainer
+
 @dataclass
 class DataIngestionConfig:
     train_data_path :str = os.path.join('artifacts','train.csv')
@@ -53,6 +56,10 @@ if __name__ == "__main__":
 
     datatransformation = Datatransformation()
     train_arr,test_arr,_ = datatransformation.initiate_data_transfomation(train_data,test_data)
+
+    model_trainer = ModelTrainer()
+    r2_scores = model_trainer.initiate_model_trainer(train_arr,test_arr)
+    
 
 
 
